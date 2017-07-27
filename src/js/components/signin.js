@@ -1,7 +1,7 @@
 import React from 'react';
 
 const SignIn = React.createClass({
-  render: function() {
+  render () {
     return (
       <div>
         <h1>SignIn Form</h1>
