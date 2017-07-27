@@ -10,4 +10,5 @@ const SignIn = React.createClass({
   }
 });
 
-export default SignIn;
+// export default SignIn;
+export { SignIn };

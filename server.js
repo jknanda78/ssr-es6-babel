@@ -3,9 +3,12 @@ require('babel-register');
 var express = require('express');
 
 //JSX Transpiler
-require("node-jsx").install({harmony: true});
+// require("node-jsx").install({harmony: true});
+
 var React = require('react');
-var SignInScreen = React.createFactory(require('./src/js/components/signin'));
+// var SignInScreen = React.createFactory(require('./src/js/components/signin').default);
+
+var SignInScreen = React.createFactory(require('./src/js/components/signin').SignIn);
 
 var bodyParser = require('body-parser');
 var compression = require('compression');
@@ -56,9 +59,11 @@ var SSRApp = function() {
 
     self.app.get('/', function (req, res) {
       var signIn = React.renderToString(SignInScreen({ ssr: true }));
-      var HTML = '<!doctype html><html><head><title>Server-Side Rendering with ES6 & Babel</title>'+ CSS +'</head><body class="landing"><div id="container">'+ signIn +'</div><link href="http://fonts.googleapis.com/css?family=Pontano+Sans" rel="stylesheet" type="text/css" /></body></html>';
+
+      var HTML = '<!doctype html><html><head><title>Server-Side Rendering with ES6 & Babel</title></head><body class="landing"><div id="container">'+ signIn +'</div><link href="http://fonts.googleapis.com/css?family=Pontano+Sans" rel="stylesheet" type="text/css" /></body></html>';
+
+      res.send(HTML);
     });
-    res.send(HTML);
   }
 
   /**
