@@ -2,11 +2,7 @@
 require('babel-register');
 var express = require('express');
 
-//JSX Transpiler
-// require("node-jsx").install({harmony: true});
-
 var React = require('react');
-// var SignInScreen = React.createFactory(require('./src/js/components/signin').default);
 
 var SignInScreen = React.createFactory(require('./src/js/components/signin').SignIn);
 

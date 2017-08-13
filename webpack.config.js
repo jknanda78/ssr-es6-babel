@@ -9,10 +9,18 @@ module.exports = {
     path: __dirname,
     filename: "./dist/[name].bundle.js",
   },
+  /**
+   * Allows testing on devices using machine IP
+   * Allows to use hostnames other than localhost. Works on devices with SquidMan.
+   * Please add an entry in /etc/hosts for any hostname that will use 127.0.0.1
+   */
   devServer: {
+    hot: true,
     inline: true,
+    host: '0.0.0.0',
+    port: 9001,
     contentBase: './',
-    port: 9001
+    disableHostCheck: true
   },
   module: {
     rules: [
@@ -61,6 +69,7 @@ module.exports = {
     ]
   },
   plugins: [
+    new webpack.HotModuleReplacementPlugin(),
     new webpack.DefinePlugin({
       "process.env": {
         "NODE_ENV": JSON.stringify("development"),
